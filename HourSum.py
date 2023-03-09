@@ -4,7 +4,7 @@ import openpyxl
 ## This script is used to get the sum of each hour of operation. This data was gathered from
 ## The 'Ventas_Detallados' file/script
 
-# -------------------- NOT USING THIS NOT USING THIS SCRIPT ------------------------------
+# -------------------- NOT USING THIS NOT USING THIS SCRIPT ------------------------------ # 
 
 # Load the workbook
 workbook = openpyxl.load_workbook('Modified Ventas Detallados February 2023.xlsx')
