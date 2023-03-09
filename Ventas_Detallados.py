@@ -85,14 +85,29 @@ for col_idx in range(sheet.max_column, 0, -1):
 
 workbook.save('Modified Ventas Detallados November 2022.xlsx')
 
+workbook = openpyxl.load_workbook('Modified Ventas Detallados November 2022.xlsx')
 
-# # # This script is used to get the sum of each hour of operation. This data was gathered from the 'Ventas_Detallados' file/script
-
+sheet = workbook['Costos']
+# Loop through the cells in the column
+for cell in sheet['A']:
+    # Check if the cell contains a number
+    if isinstance(cell.value, str) and cell.value.isnumeric():
+        # Convert the cell value to a number
+        cell.value = float(cell.value)
 
 df = pd.read_excel('Modified Ventas Detallados November 2022.xlsx', sheet_name='Costos')
 
 df_sorted = df.sort_values('Hora', ascending=True)
-# df_sorted = df_sorted.sort_values(by=['Hora'])
+
+df_sorted.to_excel('Modified Ventas Detallados November 2022.xlsx', index=False)
+# workbook.save('Modified Ventas Detallados November 2022.xlsx')
+
+# # # This script is used to get the sum of each hour of operation. This data was gathered from the 'Ventas_Detallados' file/script
+
+
+df = pd.read_excel('Modified Ventas Detallados November 2022.xlsx', sheet_name='Sheet1')
+
+df_sorted = df.sort_values('Hora', ascending=True)
 
 df_sorted = df.groupby('Hora')['Total'].sum().reset_index()
 
