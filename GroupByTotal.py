@@ -3,6 +3,9 @@ import openpyxl
 from openpyxl import worksheet
 from openpyxl.utils import get_column_letter
 
+# This Script will get the main data set and clean it.
+# Making deletion of certain rows with certain values to clean it
+
 workbook = openpyxl.load_workbook('Client Transaction February 2023.xlsx')
 
 sheet = workbook['Documento1']
@@ -27,11 +30,8 @@ for row in range(sheet.max_row, 1, -1):
     if customer_name in names_to_drop and discount_value <= 0:
         sheet.delete_rows(row)
 
-# for row in range(sheet.max_row, 1, -1):
-#     if sheet.cell(row=row, column=6).value <= 0:  # Assuming the discount column is in column C
-#         sheet.delete_rows(row)
 
 workbook.save('Modified Client Transaction February 2023.xlsx')
 
+# This Script will then be used with the GroupBy.py script.
 
-# need to edit so it cuts out all 'CONSUMIDOR FINAL' with a value <= 0 so we can see how much comp stuff we are giving.
